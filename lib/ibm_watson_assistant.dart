@@ -2,6 +2,7 @@ library ibm_watson_assistant;
 
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:ibm_watson_assistant/models.dart';
 import 'package:meta/meta.dart';
 
 /// All required auth information can be found in Assistant > Settings > API details
@@ -54,9 +55,6 @@ class IbmWatsonAssistant {
   final IbmWatsonAssistantAuth auth;
   final Options options;
 
-  String _sessionId;
-  String get sessionId => _sessionId;
-
   IbmWatsonAssistant(this.auth)
       : this.options = Options(
           headers: {
@@ -106,10 +104,10 @@ class IbmWatsonAssistant {
   /// If sessionId is specified, sends stateful input to the chatbot in the matching session.
   ///
   /// Otherwise, sends stateless input to IBM Watson Chatbot. Has no impact on any user sessions.
-  /// This can be useful for answering questions out of context.
+  /// This is useful if you wish to manage your own session state.
   ///
   /// Context is returned by default, set returnContext to false if you do not want this behavior.
-  Future<Map<String, dynamic>> sendInput(String input,
+  Future<IbmWatsonAssistantResponse> sendInput(String input,
       {String sessionId, bool returnContext = true}) async {
     final path = _buildPath(RequestType.Message, sessionId: sessionId);
 
@@ -124,7 +122,7 @@ class IbmWatsonAssistant {
 
     final res = await Dio().post(path, data: data, options: options);
 
-    return res.data;
+    return IbmWatsonAssistantResponse.fromJson(res.data);
   }
 
   /// Retrieves IBM Watson Chatbot logs.

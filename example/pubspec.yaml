@@ -9,3 +9,5 @@ dependencies:
   dotenv: ^2.0.0
   ibm_watson_assistant:
     path: ..
+  json_annotation: ^3.0.1
+  

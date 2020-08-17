@@ -1,6 +1,6 @@
 name: ibm_watson_assistant
 description: Pure dart package simplifying integration with IBM Watson Assistant v2 API.
-version: 1.0.0
+version: 1.1.0
 homepage: https://github.com/AlexHartford/ibm_watson_assistant
 
 environment:
@@ -8,4 +8,15 @@ environment:
 
 dependencies:
   dio: ^3.0.10
+  json_annotation: ^3.0.1
   meta: ^1.2.2
+
+dev_dependencies:
+  build_runner: ^1.10.0
+  json_serializable: ^3.4.0
+
+# Uncomment if having trouble running the generator. See https://github.com/flutter/flutter/issues/56779
+# dependency_overrides:
+#   analyzer: '0.39.14'
+
+# Run generator: flutter packages pub run build_runner build

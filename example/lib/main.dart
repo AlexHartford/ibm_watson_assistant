@@ -16,14 +16,20 @@ void main() async {
   print(sessionId);
 
   final botRes = await bot.sendInput('hello', sessionId: sessionId);
-  print(botRes);
+  print(botRes.output.generic.first.text);
+  print(botRes.responseText);
 
   final statelessBotRes = await bot.sendInput('goodbye', returnContext: false);
-  print(statelessBotRes);
+  print(statelessBotRes.output.generic.first.text);
+  print(statelessBotRes.responseText);
+  print(statelessBotRes.context.skills.mainSkill.systemState.state);
 
   bot.deleteSession(sessionId);
 
-  // Logging endpoint only available for paid plans
-  final logs = await bot.logs();
-  print(logs);
+  try {
+    final logs = await bot.logs();
+    print(logs);
+  } catch (e) {
+    print('Logging endpoint only available for paid plans.\n$e');
+  }
 }

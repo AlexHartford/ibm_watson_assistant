@@ -32,7 +32,8 @@ class _Output {
 
   _Output({this.intents, this.entities, this.actions, this.generic});
 
-  factory _Output.fromJson(Map<String, dynamic> json) => _$_OutputFromJson(json);
+  factory _Output.fromJson(Map<String, dynamic> json) =>
+      _$_OutputFromJson(json);
 
   Map<String, dynamic> toJson() => _$_OutputToJson(this);
 }
@@ -46,7 +47,8 @@ class _Intent {
 
   _Intent({this.intent, this.confidence});
 
-  factory _Intent.fromJson(Map<String, dynamic> json) => _$_IntentFromJson(json);
+  factory _Intent.fromJson(Map<String, dynamic> json) =>
+      _$_IntentFromJson(json);
 
   Map<String, dynamic> toJson() => _$_IntentToJson(this);
 }
@@ -64,7 +66,8 @@ class _Entity {
 
   _Entity({this.entity, this.location, this.value, this.confidence});
 
-  factory _Entity.fromJson(Map<String, dynamic> json) => _$_EntityFromJson(json);
+  factory _Entity.fromJson(Map<String, dynamic> json) =>
+      _$_EntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$_EntityToJson(this);
 }
@@ -78,7 +81,8 @@ class _Generic {
 
   _Generic({this.responseType, this.text});
 
-  factory _Generic.fromJson(Map<String, dynamic> json) => _$_GenericFromJson(json);
+  factory _Generic.fromJson(Map<String, dynamic> json) =>
+      _$_GenericFromJson(json);
 
   Map<String, dynamic> toJson() => _$_GenericToJson(this);
 }
@@ -92,7 +96,8 @@ class _Context {
 
   _Context({this.global, this.skills});
 
-  factory _Context.fromJson(Map<String, dynamic> json) => _$_ContextFromJson(json);
+  factory _Context.fromJson(Map<String, dynamic> json) =>
+      _$_ContextFromJson(json);
 
   Map<String, dynamic> toJson() => _$_ContextToJson(this);
 }
@@ -106,7 +111,8 @@ class _Global {
 
   _Global({this.system, this.sessionId});
 
-  factory _Global.fromJson(Map<String, dynamic> json) => _$_GlobalFromJson(json);
+  factory _Global.fromJson(Map<String, dynamic> json) =>
+      _$_GlobalFromJson(json);
 
   Map<String, dynamic> toJson() => _$_GlobalToJson(this);
 }
@@ -118,7 +124,8 @@ class _System {
 
   _System({this.turnCount});
 
-  factory _System.fromJson(Map<String, dynamic> json) => _$_SystemFromJson(json);
+  factory _System.fromJson(Map<String, dynamic> json) =>
+      _$_SystemFromJson(json);
 
   Map<String, dynamic> toJson() => _$_SystemToJson(this);
 }
@@ -130,7 +137,8 @@ class _Skills {
 
   _Skills({this.mainSkill});
 
-  factory _Skills.fromJson(Map<String, dynamic> json) => _$_SkillsFromJson(json);
+  factory _Skills.fromJson(Map<String, dynamic> json) =>
+      _$_SkillsFromJson(json);
 
   Map<String, dynamic> toJson() => _$_SkillsToJson(this);
 }
@@ -144,7 +152,8 @@ class _MainSkill {
 
   _MainSkill({this.userDefined, this.systemState});
 
-  factory _MainSkill.fromJson(Map<String, dynamic> json) => _$_MainSkillFromJson(json);
+  factory _MainSkill.fromJson(Map<String, dynamic> json) =>
+      _$_MainSkillFromJson(json);
 
   Map<String, dynamic> toJson() => _$_MainSkillToJson(this);
 }
@@ -156,7 +165,8 @@ class _SystemState {
 
   _SystemState({this.state});
 
-  factory _SystemState.fromJson(Map<String, dynamic> json) => _$_SystemStateFromJson(json);
+  factory _SystemState.fromJson(Map<String, dynamic> json) =>
+      _$_SystemStateFromJson(json);
 
   Map<String, dynamic> toJson() => _$_SystemStateToJson(this);
 }

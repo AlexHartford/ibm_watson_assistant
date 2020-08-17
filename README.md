@@ -1,5 +1,7 @@
 # ibm_watson_assistant
 
+[![pub package](https://img.shields.io/pub/v/ibm_watson_assistant.svg?label=ibm_watson_assistant)](https://pub.dartlang.org/packages/ibm_watson_assistant)
+
 Dart package simplifying integration with [IBM Watson Assistant v2 API](https://cloud.ibm.com/apidocs/assistant/assistant-v2).
 
 See the [example project](https://github.com/AlexHartford/ibm_watson_assistant/tree/master/example) for usage.

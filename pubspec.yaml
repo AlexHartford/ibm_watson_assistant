@@ -1,6 +1,6 @@
 name: ibm_watson_assistant
 description: Pure dart package simplifying integration with IBM Watson Assistant v2 API.
-version: 0.0.1
+version: 1.0.0
 homepage: https://github.com/AlexHartford/ibm_watson_assistant
 
 environment:

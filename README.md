@@ -2,7 +2,7 @@
 
 Dart package simplifying integration with IBM Watson Assistant v2 API.
 
-See the [example project](https://github.com/AlexHartford/ibm_watson_assistant/example) for usage.
+See the [example project](https://github.com/AlexHartford/ibm_watson_assistant/tree/master/example) for usage.
 
 ## Future
 Tests would be a welcome contribution.

@@ -1,6 +1,6 @@
 # ibm_watson_assistant
 
-Dart package simplifying integration with IBM Watson Assistant v2 API.
+Dart package simplifying integration with [IBM Watson Assistant v2 API](https://cloud.ibm.com/apidocs/assistant/assistant-v2).
 
 See the [example project](https://github.com/AlexHartford/ibm_watson_assistant/tree/master/example) for usage.
 

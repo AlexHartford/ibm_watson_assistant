@@ -1,5 +1,6 @@
 library ibm_watson_assistant;
 
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
@@ -34,17 +35,106 @@ class IbmWatsonAssistantAuth {
   /// Settings > Assistant ID
   final String assistantId;
 
-  const IbmWatsonAssistantAuth({
+  final String _basic;
+  String get basic => _basic;
+
+  IbmWatsonAssistantAuth({
     this.username = 'apikey',
     this.version = '2020-04-01',
     @required this.apikey,
     @required this.url,
     @required this.assistantId,
-  });
+  }) : this._basic = 'Basic ${base64Encode(utf8.encode('$username:$apikey'))}';
 }
 
+enum RequestType { Session, Message, Logs }
+
+/// IBM Watson Assistant V2 API Functions
 class IbmWatsonAssistant {
   final IbmWatsonAssistantAuth auth;
+  final Options options;
 
-  IbmWatsonAssistant(this.auth);
+  String _sessionId;
+  String get sessionId => _sessionId;
+
+  IbmWatsonAssistant(this.auth)
+      : this.options = Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': auth.basic,
+          },
+        );
+
+  String _buildPath(RequestType type, {String sessionId}) {
+    String path = '${auth.url}/v2/assistants/${auth.assistantId}';
+
+    switch (type) {
+      case RequestType.Session:
+        path += sessionId == null ? '/sessions' : '/sessions/$sessionId';
+        break;
+      case RequestType.Message:
+        path += sessionId == null ? '/message' : '/sessions/$sessionId/message';
+        break;
+      case RequestType.Logs:
+        path += '/logs';
+        break;
+    }
+
+    return '$path?version=${auth.version}';
+  }
+
+  /// Creates a new session for a user and returns the session ID.
+  ///
+  /// IBM deletes sessions automatically after 5 minutes of inactivity.
+  Future<String> createSession() async {
+    final path = _buildPath(RequestType.Session);
+
+    final res = await Dio().post(path, options: options);
+
+    return res.data['session_id'];
+  }
+
+  /// Clears the current session for a user.
+  ///
+  /// IBM deletes sessions automatically after 5 minutes of inactivity.
+  Future<void> deleteSession(String sessionId) async {
+    final path = _buildPath(RequestType.Session, sessionId: sessionId);
+
+    await Dio().delete(path, options: options);
+  }
+
+  /// If sessionId is specified, sends stateful input to the chatbot in the matching session.
+  ///
+  /// Otherwise, sends stateless input to IBM Watson Chatbot. Has no impact on any user sessions.
+  /// This can be useful for answering questions out of context.
+  ///
+  /// Context is returned by default, set returnContext to false if you do not want this behavior.
+  Future<Map<String, dynamic>> sendInput(String input,
+      {String sessionId, bool returnContext = true}) async {
+    final path = _buildPath(RequestType.Message, sessionId: sessionId);
+
+    final data = {
+      'input': {
+        'text': input,
+        'options': {
+          'return_context': returnContext,
+        }
+      }
+    };
+
+    final res = await Dio().post(path, data: data, options: options);
+
+    return res.data;
+  }
+
+  /// Retrieves IBM Watson Chatbot logs.
+  ///
+  /// Only available for paid plans.
+  Future<Map<String, dynamic>> logs() async {
+    final path = _buildPath(RequestType.Logs);
+
+    final res = await Dio().get(path, options: options);
+
+    return res.data;
+  }
 }

@@ -45,7 +45,7 @@ class IbmWatsonAssistantAuth {
     @required this.apikey,
     @required this.url,
     @required this.assistantId,
-  }) : this._basic = 'Basic ${base64Encode(utf8.encode('$username:$apikey'))}';
+  }) : _basic = 'Basic ${base64Encode(utf8.encode('$username:$apikey'))}';
 }
 
 enum RequestType { Session, Message, Logs }
@@ -56,7 +56,7 @@ class IbmWatsonAssistant {
   final Options options;
 
   IbmWatsonAssistant(this.auth)
-      : this.options = Options(
+      : options = Options(
           headers: {
             'Content-Type': 'application/json',
             'Authorization': auth.basic,
@@ -64,7 +64,7 @@ class IbmWatsonAssistant {
         );
 
   String _buildPath(RequestType type, {String sessionId}) {
-    String path = '${auth.url}/v2/assistants/${auth.assistantId}';
+    var path = '${auth.url}/v2/assistants/${auth.assistantId}';
 
     switch (type) {
       case RequestType.Session:

@@ -2,14 +2,12 @@
 
 Dart package simplifying integration with IBM Watson Assistant v2 API.
 
-## Getting Started
+See the [example project](https://github.com/AlexHartford/ibm_watson_assistant/example) for usage.
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Future
+Tests would be a welcome contribution.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+If I end up using more IBM Watson services in the future, I will likely make another package and consolidate.
+
+This package should remain up-to-date as it's a core dependency of an app I'm working on. Please submit an issue if I miss an update.
 

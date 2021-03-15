@@ -27,21 +27,18 @@ Map<String, dynamic> _$IbmWatsonAssistantResponseToJson(
 
 _Output _$_OutputFromJson(Map<String, dynamic> json) {
   return _Output(
-    intents: (json['intents'] as List)
-        ?.map((e) =>
-            e == null ? null : _Intent.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    entities: (json['entities'] as List)
-        ?.map((e) =>
-            e == null ? null : _Entity.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    actions: (json['actions'] as List)
+    intents: (json['intents'] as List<dynamic>?)
+        ?.map((e) => _Intent.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    entities: (json['entities'] as List<dynamic>?)
+        ?.map((e) => _Entity.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    actions: (json['actions'] as List<dynamic>?)
         ?.map((e) => e as Map<String, dynamic>)
-        ?.toList(),
-    generic: (json['generic'] as List)
-        ?.map((e) =>
-            e == null ? null : _Generic.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+        .toList(),
+    generic: (json['generic'] as List<dynamic>?)
+        ?.map((e) => _Generic.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -54,8 +51,8 @@ Map<String, dynamic> _$_OutputToJson(_Output instance) => <String, dynamic>{
 
 _Intent _$_IntentFromJson(Map<String, dynamic> json) {
   return _Intent(
-    intent: json['intent'] as String,
-    confidence: (json['confidence'] as num)?.toDouble(),
+    intent: json['intent'] as String?,
+    confidence: (json['confidence'] as num?)?.toDouble(),
   );
 }
 
@@ -66,10 +63,11 @@ Map<String, dynamic> _$_IntentToJson(_Intent instance) => <String, dynamic>{
 
 _Entity _$_EntityFromJson(Map<String, dynamic> json) {
   return _Entity(
-    entity: json['entity'] as String,
-    location: (json['location'] as List)?.map((e) => e as int)?.toList(),
-    value: json['value'] as String,
-    confidence: (json['confidence'] as num)?.toDouble(),
+    entity: json['entity'] as String?,
+    location:
+        (json['location'] as List<dynamic>?)?.map((e) => e as int).toList(),
+    value: json['value'] as String?,
+    confidence: (json['confidence'] as num?)?.toDouble(),
   );
 }
 
@@ -82,8 +80,8 @@ Map<String, dynamic> _$_EntityToJson(_Entity instance) => <String, dynamic>{
 
 _Generic _$_GenericFromJson(Map<String, dynamic> json) {
   return _Generic(
-    responseType: json['response_type'] as String,
-    text: json['text'] as String,
+    responseType: json['response_type'] as String?,
+    text: json['text'] as String?,
   );
 }
 
@@ -113,7 +111,7 @@ _Global _$_GlobalFromJson(Map<String, dynamic> json) {
     system: json['system'] == null
         ? null
         : _System.fromJson(json['system'] as Map<String, dynamic>),
-    sessionId: json['session_id'] as String,
+    sessionId: json['session_id'] as String?,
   );
 }
 
@@ -124,7 +122,7 @@ Map<String, dynamic> _$_GlobalToJson(_Global instance) => <String, dynamic>{
 
 _System _$_SystemFromJson(Map<String, dynamic> json) {
   return _System(
-    turnCount: json['turn_count'] as int,
+    turnCount: json['turn_count'] as int?,
   );
 }
 
@@ -146,7 +144,7 @@ Map<String, dynamic> _$_SkillsToJson(_Skills instance) => <String, dynamic>{
 
 _MainSkill _$_MainSkillFromJson(Map<String, dynamic> json) {
   return _MainSkill(
-    userDefined: json['user_defined'] as Map<String, dynamic>,
+    userDefined: json['user_defined'] as Map<String, dynamic>?,
     systemState: json['system'] == null
         ? null
         : _SystemState.fromJson(json['system'] as Map<String, dynamic>),
@@ -161,7 +159,7 @@ Map<String, dynamic> _$_MainSkillToJson(_MainSkill instance) =>
 
 _SystemState _$_SystemStateFromJson(Map<String, dynamic> json) {
   return _SystemState(
-    state: json['state'] as String,
+    state: json['state'] as String?,
   );
 }
 

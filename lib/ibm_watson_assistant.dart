@@ -3,7 +3,6 @@ library ibm_watson_assistant;
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:ibm_watson_assistant/models.dart';
-import 'package:meta/meta.dart';
 
 /// All required auth information can be found in Assistant > Settings > API details
 class IbmWatsonAssistantAuth {
@@ -42,9 +41,9 @@ class IbmWatsonAssistantAuth {
   IbmWatsonAssistantAuth({
     this.username = 'apikey',
     this.version = '2020-04-01',
-    @required this.apikey,
-    @required this.url,
-    @required this.assistantId,
+    required this.apikey,
+    required this.url,
+    required this.assistantId,
   }) : _basic = 'Basic ${base64Encode(utf8.encode('$username:$apikey'))}';
 }
 
@@ -63,7 +62,7 @@ class IbmWatsonAssistant {
           },
         );
 
-  String _buildPath(RequestType type, {String sessionId}) {
+  String _buildPath(RequestType type, {String? sessionId}) {
     var path = '${auth.url}/v2/assistants/${auth.assistantId}';
 
     switch (type) {
@@ -84,7 +83,7 @@ class IbmWatsonAssistant {
   /// Creates a new session for a user and returns the session ID.
   ///
   /// IBM deletes sessions automatically after 5 minutes of inactivity.
-  Future<String> createSession() async {
+  Future<String?> createSession() async {
     final path = _buildPath(RequestType.Session);
 
     final res = await Dio().post(path, options: options);
@@ -108,7 +107,7 @@ class IbmWatsonAssistant {
   ///
   /// Context is returned by default, set returnContext to false if you do not want this behavior.
   Future<IbmWatsonAssistantResponse> sendInput(String input,
-      {String sessionId, bool returnContext = true}) async {
+      {String? sessionId, bool returnContext = true}) async {
     final path = _buildPath(RequestType.Message, sessionId: sessionId);
 
     final data = {
@@ -128,7 +127,7 @@ class IbmWatsonAssistant {
   /// Retrieves IBM Watson Chatbot logs.
   ///
   /// Only available for paid plans.
-  Future<Map<String, dynamic>> logs() async {
+  Future<Map<String, dynamic>?> logs() async {
     final path = _buildPath(RequestType.Logs);
 
     final res = await Dio().get(path, options: options);

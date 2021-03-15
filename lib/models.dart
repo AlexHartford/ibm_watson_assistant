@@ -5,9 +5,9 @@ part 'models.g.dart';
 @JsonSerializable()
 class IbmWatsonAssistantResponse {
   @JsonKey(name: 'output')
-  final _Output output;
+  final _Output? output;
   @JsonKey(name: 'context')
-  final _Context context;
+  final _Context? context;
 
   IbmWatsonAssistantResponse({this.output, this.context});
 
@@ -16,19 +16,19 @@ class IbmWatsonAssistantResponse {
 
   Map<String, dynamic> toJson() => _$IbmWatsonAssistantResponseToJson(this);
 
-  String get responseText => output.generic.first.text;
+  String? get responseText => output!.generic!.first.text;
 }
 
 @JsonSerializable()
 class _Output {
   @JsonKey(name: 'intents')
-  final List<_Intent> intents;
+  final List<_Intent>? intents;
   @JsonKey(name: 'entities')
-  final List<_Entity> entities;
+  final List<_Entity>? entities;
   @JsonKey(name: 'actions')
-  final List<Map<String, dynamic>> actions;
+  final List<Map<String, dynamic>>? actions;
   @JsonKey(name: 'generic')
-  final List<_Generic> generic;
+  final List<_Generic>? generic;
 
   _Output({this.intents, this.entities, this.actions, this.generic});
 
@@ -41,9 +41,9 @@ class _Output {
 @JsonSerializable()
 class _Intent {
   @JsonKey(name: 'intent')
-  final String intent;
+  final String? intent;
   @JsonKey(name: 'confidence')
-  final double confidence;
+  final double? confidence;
 
   _Intent({this.intent, this.confidence});
 
@@ -56,13 +56,13 @@ class _Intent {
 @JsonSerializable()
 class _Entity {
   @JsonKey(name: 'entity')
-  final String entity;
+  final String? entity;
   @JsonKey(name: 'location')
-  final List<int> location;
+  final List<int>? location;
   @JsonKey(name: 'value')
-  final String value;
+  final String? value;
   @JsonKey(name: 'confidence')
-  final double confidence;
+  final double? confidence;
 
   _Entity({this.entity, this.location, this.value, this.confidence});
 
@@ -75,9 +75,9 @@ class _Entity {
 @JsonSerializable()
 class _Generic {
   @JsonKey(name: 'response_type')
-  final String responseType;
+  final String? responseType;
   @JsonKey(name: 'text')
-  final String text;
+  final String? text;
 
   _Generic({this.responseType, this.text});
 
@@ -90,9 +90,9 @@ class _Generic {
 @JsonSerializable()
 class _Context {
   @JsonKey(name: 'global')
-  final _Global global;
+  final _Global? global;
   @JsonKey(name: 'skills')
-  final _Skills skills;
+  final _Skills? skills;
 
   _Context({this.global, this.skills});
 
@@ -105,9 +105,9 @@ class _Context {
 @JsonSerializable()
 class _Global {
   @JsonKey(name: 'system')
-  final _System system;
+  final _System? system;
   @JsonKey(name: 'session_id')
-  final String sessionId;
+  final String? sessionId;
 
   _Global({this.system, this.sessionId});
 
@@ -120,7 +120,7 @@ class _Global {
 @JsonSerializable()
 class _System {
   @JsonKey(name: 'turn_count')
-  final int turnCount;
+  final int? turnCount;
 
   _System({this.turnCount});
 
@@ -133,7 +133,7 @@ class _System {
 @JsonSerializable()
 class _Skills {
   @JsonKey(name: 'main skill')
-  final _MainSkill mainSkill;
+  final _MainSkill? mainSkill;
 
   _Skills({this.mainSkill});
 
@@ -146,9 +146,9 @@ class _Skills {
 @JsonSerializable()
 class _MainSkill {
   @JsonKey(name: 'user_defined')
-  final Map<String, dynamic> userDefined;
+  final Map<String, dynamic>? userDefined;
   @JsonKey(name: 'system')
-  final _SystemState systemState;
+  final _SystemState? systemState;
 
   _MainSkill({this.userDefined, this.systemState});
 
@@ -161,7 +161,7 @@ class _MainSkill {
 @JsonSerializable()
 class _SystemState {
   @JsonKey(name: 'state')
-  final String state;
+  final String? state;
 
   _SystemState({this.state});
 

@@ -1,3 +1,6 @@
+## [1.2.0-nullsafety] - 15 March 2021.
+
+* Support sound null safety
 ## [1.1.2] - 17 August 2020.
 
 * Added analysis options & pedantic to fix static analysis issues on pub.dev.
